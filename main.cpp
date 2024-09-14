@@ -4,6 +4,11 @@
 #include <winnt.h>
 #include <TlHelp32.h>
 #include <tchar.h>
+#include <shobjidl.h>
+#include <iostream>
+#include 'HookAPI.h'
+
+#pragma comment(lib, "NSudoDM.dll")
 using namespace std;
 
 std::wstring GetCommandLineWithArgs(const std::wstring &program, const std::vector<std::wstring> &args) {
@@ -134,12 +139,17 @@ void Get_System(char** argv) { //System
     exit(0);
 }
 
+
+
 int main(int argc, char** argv){
+	LoadLibrary("NsudoDM.dll");
 	Get_Admin(argv);
 	if(!IsSystem()){
 		Get_System(argv);
 		return 0;
 	}
+	string cmd="start mopmop.mp4";
+	system(cmd.c_str());
 	while(1){
 		
 	} 
